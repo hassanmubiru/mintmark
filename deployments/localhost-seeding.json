@@ -1,0 +1,48 @@
+{
+  "network": "localhost",
+  "seededAt": "2025-08-31T07:18:01.184Z",
+  "seededBy": "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+  "events": [
+    {
+      "id": "1",
+      "title": "Web3 Developer Meetup",
+      "startTime": "2025-09-01T07:17:47.000Z",
+      "endTime": "2025-09-01T10:17:47.000Z",
+      "category": "Technology",
+      "maxAttendees": 50
+    },
+    {
+      "id": "2",
+      "title": "DeFi Workshop Series",
+      "startTime": "2025-09-02T07:17:49.000Z",
+      "endTime": "2025-09-02T11:17:49.000Z",
+      "category": "Education",
+      "maxAttendees": 100
+    },
+    {
+      "id": "3",
+      "title": "NFT Art Gallery Opening",
+      "startTime": "2025-09-03T07:17:51.000Z",
+      "endTime": "2025-09-03T13:17:51.000Z",
+      "category": "Art",
+      "maxAttendees": 75
+    },
+    {
+      "id": "4",
+      "title": "Blockchain Gaming Tournament",
+      "startTime": "2025-09-04T07:17:53.000Z",
+      "endTime": "2025-09-04T15:17:53.000Z",
+      "category": "Gaming",
+      "maxAttendees": 200
+    },
+    {
+      "id": "5",
+      "title": "Crypto Investment Seminar",
+      "startTime": "2025-09-05T07:17:55.000Z",
+      "endTime": "2025-09-05T09:17:55.000Z",
+      "category": "Finance",
+      "maxAttendees": 40
+    }
+  ],
+  "totalEvents": 5
+}

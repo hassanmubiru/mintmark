@@ -1,0 +1,257 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "MintMark Badge NFT Metadata",
+  "description": "Metadata template for MintMark attendance badge NFTs",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Badge name (usually event name + 'Attendance Badge')",
+      "example": "Web3 Developer Meetup Attendance Badge"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the badge and event",
+      "example": "Proof of attendance for Web3 Developer Meetup held on March 15, 2024. This NFT badge certifies that the holder attended this educational event about blockchain development."
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "description": "IPFS or HTTP URL to the badge image",
+      "example": "https://ipfs.io/ipfs/QmYourImageHash"
+    },
+    "external_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to view the badge or event details",
+      "example": "https://mintmark.app/badge/123"
+    },
+    "animation_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to animated version of the badge (optional)",
+      "example": "https://ipfs.io/ipfs/QmYourAnimationHash"
+    },
+    "attributes": {
+      "type": "array",
+      "description": "Array of traits and properties",
+      "items": {
+        "type": "object",
+        "properties": {
+          "trait_type": {
+            "type": "string",
+            "description": "Name of the trait"
+          },
+          "value": {
+            "oneOf": [
+              {"type": "string"},
+              {"type": "number"}
+            ],
+            "description": "Value of the trait"
+          },
+          "display_type": {
+            "type": "string",
+            "enum": ["number", "date", "boost_percentage", "boost_number"],
+            "description": "How to display the trait"
+          },
+          "max_value": {
+            "type": "number",
+            "description": "Maximum value for progress bars"
+          }
+        },
+        "required": ["trait_type", "value"]
+      },
+      "default": [
+        {
+          "trait_type": "Event",
+          "value": "Web3 Developer Meetup"
+        },
+        {
+          "trait_type": "Event Date",
+          "value": "2024-03-15T18:00:00Z",
+          "display_type": "date"
+        },
+        {
+          "trait_type": "Category",
+          "value": "Technology"
+        },
+        {
+          "trait_type": "Location",
+          "value": "Tech Hub, San Francisco"
+        },
+        {
+          "trait_type": "Organizer",
+          "value": "0x742d35Cc6635Bc0532..."
+        },
+        {
+          "trait_type": "Verification Method",
+          "value": "QR Code"
+        },
+        {
+          "trait_type": "Rarity",
+          "value": "Common"
+        },
+        {
+          "trait_type": "Streak Count",
+          "value": 5,
+          "display_type": "number"
+        },
+        {
+          "trait_type": "Minted At",
+          "value": "2024-03-15T22:30:00Z",
+          "display_type": "date"
+        }
+      ]
+    },
+    "background_color": {
+      "type": "string",
+      "pattern": "^[0-9A-Fa-f]{6}$",
+      "description": "Six-character hexadecimal background color",
+      "example": "3B82F6"
+    },
+    "youtube_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "YouTube URL for event recording (optional)",
+      "example": "https://youtube.com/watch?v=example"
+    },
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for the event",
+      "example": "1"
+    },
+    "event_name": {
+      "type": "string",
+      "description": "Name of the event",
+      "example": "Web3 Developer Meetup"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 date-time of the event",
+      "example": "2024-03-15T18:00:00Z"
+    },
+    "attendee_address": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$",
+      "description": "Ethereum address of the attendee",
+      "example": "0x742d35Cc6635Bc0532675C6E6e5e64374b8D0532"
+    },
+    "organizer": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$",
+      "description": "Ethereum address of the event organizer",
+      "example": "0x1234567890123456789012345678901234567890"
+    },
+    "verification_method": {
+      "type": "string",
+      "enum": ["signature", "qr_code", "manual"],
+      "description": "Method used to verify attendance",
+      "example": "qr_code"
+    },
+    "minted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 date-time when the badge was minted",
+      "example": "2024-03-15T22:30:00Z"
+    },
+    "rarity": {
+      "type": "string",
+      "enum": ["common", "uncommon", "rare", "epic", "legendary"],
+      "description": "Rarity level of the badge",
+      "example": "common"
+    },
+    "streak_count": {
+      "type": "number",
+      "minimum": 1,
+      "description": "User's consecutive attendance streak",
+      "example": 5
+    },
+    "category": {
+      "type": "string",
+      "description": "Event category",
+      "example": "Technology"
+    },
+    "location": {
+      "type": "string",
+      "description": "Event location",
+      "example": "Tech Hub, San Francisco"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "image",
+    "event_id",
+    "event_name",
+    "event_date",
+    "attendee_address",
+    "organizer",
+    "verification_method",
+    "minted_at",
+    "category",
+    "location"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "name": "Web3 Developer Meetup Attendance Badge",
+      "description": "Proof of attendance for Web3 Developer Meetup held on March 15, 2024. This NFT badge certifies that the holder attended this educational event about blockchain development and networking with fellow developers.",
+      "image": "https://ipfs.io/ipfs/QmExample123456789",
+      "external_url": "https://mintmark.app/badge/1",
+      "attributes": [
+        {
+          "trait_type": "Event",
+          "value": "Web3 Developer Meetup"
+        },
+        {
+          "trait_type": "Event Date",
+          "value": "2024-03-15T18:00:00Z",
+          "display_type": "date"
+        },
+        {
+          "trait_type": "Category",
+          "value": "Technology"
+        },
+        {
+          "trait_type": "Location",
+          "value": "Tech Hub, San Francisco"
+        },
+        {
+          "trait_type": "Organizer",
+          "value": "0x1234567890123456789012345678901234567890"
+        },
+        {
+          "trait_type": "Verification Method",
+          "value": "QR Code"
+        },
+        {
+          "trait_type": "Rarity",
+          "value": "Common"
+        },
+        {
+          "trait_type": "Streak Count",
+          "value": 5,
+          "display_type": "number"
+        },
+        {
+          "trait_type": "Minted At",
+          "value": "2024-03-15T22:30:00Z",
+          "display_type": "date"
+        }
+      ],
+      "background_color": "3B82F6",
+      "event_id": "1",
+      "event_name": "Web3 Developer Meetup",
+      "event_date": "2024-03-15T18:00:00Z",
+      "attendee_address": "0x742d35Cc6635Bc0532675C6E6e5e64374b8D0532",
+      "organizer": "0x1234567890123456789012345678901234567890",
+      "verification_method": "qr_code",
+      "minted_at": "2024-03-15T22:30:00Z",
+      "rarity": "common",
+      "streak_count": 5,
+      "category": "Technology",
+      "location": "Tech Hub, San Francisco"
+    }
+  ]
+}
