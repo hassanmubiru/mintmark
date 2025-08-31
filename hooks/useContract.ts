@@ -108,46 +108,50 @@ export function useAccessControl() {
   const { accessControl } = useContracts();
   const { address } = useAccount();
 
+  // Check if we have the contract data
+  const contractAddress = accessControl?.address;
+  const contractAbi = accessControl?.abi;
+
   // Read functions
   const { data: isAdminData, isLoading: isAdminLoading, error: isAdminError } = readContracts({
     contracts: [
       {
-        address: accessControl?.address,
-        abi: accessControl?.abi || [],
+        address: contractAddress,
+        abi: contractAbi || [],
         functionName: 'isAdmin',
         args: address ? [address] : [],
       },
     ],
     query: {
-      enabled: !!address && !!accessControl?.address,
+      enabled: !!address && !!contractAddress,
     },
   });
 
   const { data: isOrganizerData, isLoading: isOrganizerLoading, error: isOrganizerError } = readContracts({
     contracts: [
       {
-        address: accessControl?.address,
-        abi: accessControl?.abi || [],
+        address: contractAddress,
+        abi: contractAbi || [],
         functionName: 'isOrganizer',
         args: address ? [address] : [],
       },
     ],
     query: {
-      enabled: !!address && !!accessControl?.address,
+      enabled: !!address && !!contractAddress,
     },
   });
 
   const { data: isVerifierData, isLoading: isVerifierLoading, error: isVerifierError } = readContracts({
     contracts: [
       {
-        address: accessControl?.address,
-        abi: accessControl?.abi || [],
+        address: contractAddress,
+        abi: contractAbi || [],
         functionName: 'isVerifier',
         args: address ? [address] : [],
       },
     ],
     query: {
-      enabled: !!address && !!accessControl?.address,
+      enabled: !!address && !!contractAddress,
     },
   });
 
