@@ -119,7 +119,7 @@ export function useAccessControl() {
       },
     ],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!accessControl?.address,
     },
   });
 
@@ -133,7 +133,7 @@ export function useAccessControl() {
       },
     ],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!accessControl?.address,
     },
   });
 
@@ -147,7 +147,7 @@ export function useAccessControl() {
       },
     ],
     query: {
-      enabled: !!address,
+      enabled: !!address && !!accessControl?.address,
     },
   });
 

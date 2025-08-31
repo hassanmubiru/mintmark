@@ -28,13 +28,19 @@ function DetailedDebugPage() {
         badgeNFTContract: !!contracts.badgeNFT,
         attendanceContract: !!contracts.attendance,
       },
-      accessControlHook: {
-        isAdmin: accessControl.isAdmin,
-        isOrganizer: accessControl.isOrganizer,
-        isVerifier: accessControl.isVerifier,
-        isLoading: accessControl.isLoading,
-        error: accessControl.error,
-      },
+             accessControlHook: {
+         isAdmin: accessControl.isAdmin,
+         isOrganizer: accessControl.isOrganizer,
+         isVerifier: accessControl.isVerifier,
+         isLoading: accessControl.isLoading,
+         error: accessControl.error,
+         isAdminLoading: accessControl.isAdminLoading,
+         isOrganizerLoading: accessControl.isOrganizerLoading,
+         isVerifierLoading: accessControl.isVerifierLoading,
+         isAdminError: accessControl.isAdminError,
+         isOrganizerError: accessControl.isOrganizerError,
+         isVerifierError: accessControl.isVerifierError,
+       },
       roleState: {
         isAdmin: roleState.isAdmin,
         isOrganizer: roleState.isOrganizer,
@@ -124,6 +130,9 @@ function DetailedDebugPage() {
                   <h3 className="font-medium mb-2">Loading States</h3>
                   <div className="space-y-2">
                     <p><strong>Is Loading:</strong> {accessControl.isLoading ? '⏳ Yes' : '✅ No'}</p>
+                    <p><strong>Admin Loading:</strong> {accessControl.isAdminLoading ? '⏳ Yes' : '✅ No'}</p>
+                    <p><strong>Organizer Loading:</strong> {accessControl.isOrganizerLoading ? '⏳ Yes' : '✅ No'}</p>
+                    <p><strong>Verifier Loading:</strong> {accessControl.isVerifierLoading ? '⏳ Yes' : '✅ No'}</p>
                     <p><strong>Error:</strong> {accessControl.error ? accessControl.error.message : 'None'}</p>
                   </div>
                 </div>
