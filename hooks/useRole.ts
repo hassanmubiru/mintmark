@@ -41,11 +41,11 @@ export function useRole(): UseRoleReturn {
     try {
       switch (role) {
         case ROLES.DEFAULT_ADMIN_ROLE:
-          return accessControl.isAdmin;
+          return !!accessControl.isAdmin;
         case ROLES.ORGANIZER_ROLE:
-          return accessControl.isOrganizer;
+          return !!accessControl.isOrganizer;
         case ROLES.VERIFIER_ROLE:
-          return accessControl.isVerifier;
+          return !!accessControl.isVerifier;
         default:
           return false;
       }
@@ -69,11 +69,10 @@ export function useRole(): UseRoleReturn {
     setRoleState(prev => ({ ...prev, isLoading: true, error: undefined }));
 
     try {
-      const [isAdmin, isOrganizer, isVerifier] = [
-        accessControl.isAdmin,
-        accessControl.isOrganizer,
-        accessControl.isVerifier
-      ];
+      // Use the values from the accessControl hook
+      const isAdmin = !!accessControl.isAdmin;
+      const isOrganizer = !!accessControl.isOrganizer;
+      const isVerifier = !!accessControl.isVerifier;
 
       setRoleState({
         isAdmin,
