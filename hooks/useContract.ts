@@ -109,7 +109,7 @@ export function useAccessControl() {
   const { address } = useAccount();
 
   // Read functions
-  const { data: isAdmin, isLoading: isAdminLoading, error: isAdminError } = readContracts({
+  const { data: isAdminData, isLoading: isAdminLoading, error: isAdminError } = readContracts({
     contracts: [
       {
         address: accessControl?.address,
@@ -123,7 +123,7 @@ export function useAccessControl() {
     },
   });
 
-  const { data: isOrganizer, isLoading: isOrganizerLoading, error: isOrganizerError } = readContracts({
+  const { data: isOrganizerData, isLoading: isOrganizerLoading, error: isOrganizerError } = readContracts({
     contracts: [
       {
         address: accessControl?.address,
@@ -137,7 +137,7 @@ export function useAccessControl() {
     },
   });
 
-  const { data: isVerifier, isLoading: isVerifierLoading, error: isVerifierError } = readContracts({
+  const { data: isVerifierData, isLoading: isVerifierLoading, error: isVerifierError } = readContracts({
     contracts: [
       {
         address: accessControl?.address,
@@ -150,6 +150,11 @@ export function useAccessControl() {
       enabled: !!address,
     },
   });
+
+  // Extract the first (and only) result from each array
+  const isAdmin = isAdminData?.[0];
+  const isOrganizer = isOrganizerData?.[0];
+  const isVerifier = isVerifierData?.[0];
 
   // Write functions
   const { data: addOrganizerResult, write: addOrganizerWrite, isLoading: addOrganizerLoading, isSuccess: addOrganizerSuccess, isError: addOrganizerError, error: addOrganizerTxError } = useContractWrite({
@@ -244,7 +249,7 @@ export function useEventManager() {
   const { address } = useAccount();
 
   // Read functions
-  const { data: totalEvents, isLoading: totalEventsLoading } = readContracts({
+  const { data: totalEventsData, isLoading: totalEventsLoading } = readContracts({
     contracts: [
       {
         address: eventManager?.address,
@@ -257,6 +262,9 @@ export function useEventManager() {
       enabled: !!eventManager?.address,
     },
   });
+
+  // Extract the first (and only) result from the array
+  const totalEvents = totalEventsData?.[0];
 
   const getEvent = useCallback((eventId: number): UseContractReadHook => {
     const { data, isLoading, isError, error } = readContracts({
