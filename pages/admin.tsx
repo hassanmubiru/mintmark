@@ -353,14 +353,29 @@ function AdminDashboard() {
               </div>
               
               <div className="flex gap-3">
-                <button className="btn btn-outline">
-                  <EyeIcon className="w-4 h-4 mr-2" />
-                  View Logs
-                </button>
-                <button className="btn btn-outline">
-                  <SettingsIcon className="w-4 h-4 mr-2" />
-                  Settings
-                </button>
+                {!address ? (
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <div className="flex items-center gap-3">
+                      <AlertTriangleIcon className="w-5 h-5 text-yellow-600" />
+                      <div>
+                        <p className="font-medium text-yellow-800">Wallet Not Connected</p>
+                        <p className="text-sm text-yellow-700">Connect your wallet to access admin features</p>
+                      </div>
+                      <ConnectButton />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <button className="btn btn-outline">
+                      <EyeIcon className="w-4 h-4 mr-2" />
+                      View Logs
+                    </button>
+                    <button className="btn btn-outline">
+                      <SettingsIcon className="w-4 h-4 mr-2" />
+                      Settings
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -416,6 +431,29 @@ function AdminDashboard() {
 
         {/* Content */}
         <div className="container-base py-8">
+          {!address && (
+            <div className="mb-8">
+              <div className="card bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
+                <div className="card-body text-center">
+                  <div className="flex items-center justify-center mb-4">
+                    <ShieldIcon className="w-12 h-12 text-blue-600 mr-4" />
+                    <div>
+                      <h2 className="text-2xl font-bold text-blue-900">Admin Access Required</h2>
+                      <p className="text-blue-700">Connect your wallet to access the admin dashboard</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    <ConnectButton />
+                  </div>
+                  <div className="mt-4 text-sm text-blue-600">
+                    <p>Make sure you're connected to the Hardhat Local network (Chain ID: 31337)</p>
+                    <p>Use the admin account: 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
           {activeTab === 'overview' && (
             <div className="space-y-8">
               <SystemStats />

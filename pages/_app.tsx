@@ -24,7 +24,20 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
     baseGoerli, // Primary testnet
     baseSepolia, // Alternative testnet
     base, // Mainnet
-    ...(process.env.NODE_ENV === 'development' ? [] : []), // Add localhost in development if needed
+    ...(process.env.NODE_ENV === 'development' ? [{
+      id: 31337,
+      name: 'Hardhat Local',
+      network: 'hardhat',
+      nativeCurrency: {
+        decimals: 18,
+        name: 'Ether',
+        symbol: 'ETH',
+      },
+      rpcUrls: {
+        default: { http: ['http://localhost:8545'] },
+        public: { http: ['http://localhost:8545'] },
+      },
+    }] : []), // Add localhost in development
   ],
   [
     alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY! }),
